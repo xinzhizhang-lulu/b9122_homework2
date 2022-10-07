@@ -11,7 +11,7 @@ result = []
 
 maxNumUrl = 10  # set the maximum number of urls to visit
 print("Starting with url="+str(urls))
-while len(urls) > 0 and len(opened) < maxNumUrl:
+while len(urls) > 0 and len(result) < maxNumUrl:
     # DEQUEUE A URL FROM urls AND TRY TO OPEN AND READ IT
     try:
         curr_url = urls.pop(0)
@@ -48,7 +48,7 @@ while len(urls) > 0 and len(opened) < maxNumUrl:
         print("childurl=" + childUrl)
         print("seed_url in childUrl=" + str(seed_url in childUrl))
         print("Have we seen this childUrl=" + str(childUrl in seen))
-        if seed_url in childUrl and childUrl not in seen:
+        if seed_url.replace('.htm', '') in childUrl and childUrl not in seen:
             # print("***urls.append and seen.append***")
             seen.append(childUrl)
             urls.append(childUrl)
@@ -56,12 +56,12 @@ while len(urls) > 0 and len(opened) < maxNumUrl:
             print("######")
 
 print("num. of URLs seen = %d, and scanned = %d" % (len(seen), len(opened)))
-print("List of seen URLs:")
-for seen_url in seen:
-    print(seen_url)
-print("List of opened URLs:")
-for opened_url in opened:
-    print(opened_url)
-print("List of target URLs:")
-for r in result:
-    print(r)
+# print("List of seen URLs:")
+# for seen_url in seen:
+#     print(seen_url)
+# print("List of opened URLs:")
+# for opened_url in opened:
+#     print(opened_url)
+# print("List of target URLs:")
+for target_url in result:
+    print(target_url)
